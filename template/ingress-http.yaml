@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: http
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: flask.liangyawang.com
+    http:
+      paths:
+      - backend:
+          serviceName: flaskapp
+          servicePort: 80
+        path:

@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: flaskapp
+  namespace: default
+spec:
+  ports:
+  - name: http
+    nodePort: 33380
+    port: 80
+    targetPort: 80
+  selector: 
+    app: flaskapp
+  type: NodePort
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: flaskapp
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: flaskapp
+      namespace: default
+      labels:
+        app: flaskapp
+    spec:
+      containers:
+      - name: flaskapp
+        image: 172.16.1.24/python/flask:v1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 80
+        volumeMounts:
+        - name: pymount
+          mountPath: /home/pytest
+        command: ["python3"]
+        args: ["/home/pytest/pytest.py"]
+        livenessProbe:
+          exec:
+            command:
+            - "/bin/sh"
+            - "-c"
+            - "curl localhost"
+          initialDelaySeconds: 1
+          periodSeconds: 3
+      volumes:
+      - name: pymount
+        hostPath:
+          path: /mnt
