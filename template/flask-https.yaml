@@ -45,3 +45,4 @@ spec:
           path: /mnt
       imagePullSecrets:
       - name: harbor-secret
+      restartPolicy: Always

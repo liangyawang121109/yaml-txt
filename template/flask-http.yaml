@@ -40,11 +40,8 @@ spec:
         command: ["python3"]
         args: ["/home/pytest/pytest.py"]
         livenessProbe:
-          exec:
-            command:
-            - "/bin/sh"
-            - "-c"
-            - "curl localhost"
+          httpGet:
+            port: http
           initialDelaySeconds: 1
           periodSeconds: 3
       volumes:
