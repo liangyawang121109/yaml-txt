@@ -1,0 +1,36 @@
+network.host: 0.0.0.0 #指定节点监听ip地址
+http.port: 9200 #指定监听端口
+cluster.name: cluster-product #集群的名称
+node.name: node-1 #节点名称 此名称无需映射
+path.data: /data/elk/elasticsearch/data #指定数据存放位置 如果之前有数据 那么直接指定数据目录即可完成迁移
+path.logs: /data/elk/elasticsearch/logs #指定日志存放位置
+#xpack.security.enabled: true #这个配置在上传license证书的时候需要将true改未false 上传完毕开启验证改为true 
+#xpack.security.transport.ssl.enabled: true #开启加密传输
+#xpack.security.transport.ssl.verification_mode: certificate
+#xpack.security.transport.ssl.keystore.path: certs/elastic-certificates.p12 #指定集群内的证书位置
+#xpack.security.transport.ssl.truststore.path: certs/elastic-certificates.p12
+#xpack:
+#  security:
+#    authc:
+#      realms:
+#        ldap1:
+#          type: "ldap"
+#          order: 0
+#          url: "ldap://172.16.16.4:389"
+#          bind_dn: "cn=root,dc=limikeji,dc=com"
+#          bind_password: limikeji
+#          user_dn_templates:
+#            - "uid={0},ou=manager,dc=limikeji,dc=com"
+#          group_search:
+#            base_dn: "dc=limikeji,dc=com"
+#          files:
+#            role_mapping: "/usr/local/elasticsearch/config/role_mapping.yml"
+#          unmapped_groups_as_roles: false
+#bootstrap.memory_lock: false 
+#bootstrap.system_call_filter: false
+#discovery.zen.minimum_master_nodes: 1
+#node.master: true
+#node.data: true
+#discovery.zen.ping.unicast.hosts: ["172.16.16.3:9300","172.16.16.5:9300"]
+#transport.tcp.compress: true
+#http.max_content_length: 100mb

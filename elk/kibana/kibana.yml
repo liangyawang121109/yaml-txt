@@ -1,0 +1,10 @@
+server.port: 5601
+server.host: "localhost"
+elasticsearch.url: "http://elasticsearch.com:9200"
+kibana.index: ".kibana"
+ops.interval: 5000
+logging.dest: /data/kibana/logs/kibana.log
+elasticsearch.requestTimeout: 300000  #查询超时时间
+#elasticsearch.username: "elastic"  #配置xpack以后 设置了账户密码需要打开此配置 
+#elasticsearch.password: "limikeji"
+tilemap.url: 'http://webrd02.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=7&x={x}&y={y}&z={z}'

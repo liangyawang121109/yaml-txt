@@ -51,3 +51,5 @@ spec:
       - name: pymount
         hostPath:
           path: /mnt
+      imagePullSecrets:
+      - name: harbor-secret
