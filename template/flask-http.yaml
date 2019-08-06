@@ -44,9 +44,17 @@ spec:
             port: http
           initialDelaySeconds: 1
           periodSeconds: 3
+        lifecycle:
+          postStart:
+            exec:
+              command:
+              - mkdir
+              - /tmp/test
       volumes:
       - name: pymount
         hostPath:
           path: /mnt
       imagePullSecrets:
       - name: harbor-secret
+      nodeSelector:
+        first: machine
