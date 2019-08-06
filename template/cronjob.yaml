@@ -1,0 +1,30 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: hello
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    metadata:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: flaskcron
+            image: 172.16.1.24/python/flask:v1
+            imagePullPolicy: IfNotPresent
+            ports:
+            - name: http
+              containerPort: 80
+            volumeMounts:
+            - name: pymount
+              mountPath: /home/pytest
+            command: ["python3"]
+            args: ["/home/pytest/pytest.py"]
+          volumes:
+          - name: pymount
+            hostPath:
+              path: /mnt
+          imagePullSecrets:
+          - name: harbor-secret
+          restartPolicy: Never
