@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: NetworkPolicy
+metadata:
+  name: deny-all-ingress
+  namespace: dev
+spec:
+  podSelector:
+    matchLabels:
+      app: flaskapp1
+#  ingress: 
+#  - {}
+  policyTypes:
+  - Ingress

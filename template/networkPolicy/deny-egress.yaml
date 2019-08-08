@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: NetworkPolicy
+metadata:
+  name: deny-all-egress
+  namespace: dev
+spec:
+  podSelector:
+    matchLabels:
+      app: flaskapp1
+  egress:
+  - to:
+    - podSelector:
+        matchLabels:
+          app: flaskapp1
+  policyTypes:
+  - Egress

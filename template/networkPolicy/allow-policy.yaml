@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: NetworkPolicy
+metadata:
+  name: allow-app-flaskapp1
+spec:
+  podSelector:
+    matchLabels:
+      app: flaskapp1
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: 10.244.0.0/16
+        except:
+        - 10.244.1.19/32
+    ports:
+    - port: 80
