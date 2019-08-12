@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: flaskapp-svc
+  namespace: default
+spec:
+  ports:
+  - name: http
+    nodePort: 32380
+    port: 80
+    targetPort: 80
+  selector: 
+    app: flaskapp
+  type: NodePort
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: flaskapp
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: flaskapp
+      namespace: default
+      labels:
+        app: flaskapp
+    spec:
+      containers:
+      - name: flaskapp
+        image: 172.16.1.24/python/flask:v1
+        imagePullPolicy: IfNotPresent
+      serviceAccountName: admin
+        ports:
+        - name: http
+          containerPort: 80
+        volumeMounts:
+        - name: pymount
+          mountPath: /home/pytest
+        command: ["python3"]
+        args: ["/home/pytest/pytest.py"]
+      volumes:
+      - name: pymount
+        hostPath:
+          path: /mnt
+      imagePullSecrets:
+      - name: harbor-secret
