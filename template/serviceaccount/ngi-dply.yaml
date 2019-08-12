@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pod-sa
+  namespace: default
+  labels:
+    app: nginxv1
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: nginxv1
+      labels:
+        app: nginxv1
+    spec:
+      containers:
+      - name: nginxv1
+        image: 172.16.1.24/nginx/nginx:v1
+        ports:
+        - name: http
+          containerPort: 80
+      serviceAccountName: admin
