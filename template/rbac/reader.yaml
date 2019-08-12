@@ -1,0 +1,18 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+#  creationTimestamp: "2019-08-12T06:22:29Z"
+  name: pod-read
+  namespace: default
+#  resourceVersion: "149754"
+#  selfLink: /apis/rbac.authorization.k8s.io/v1/namespaces/default/roles/pod-read
+#  uid: 8fe1e1e2-bcc9-11e9-a3f6-000c296d14a9
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - get
+  - list
+  - watch
